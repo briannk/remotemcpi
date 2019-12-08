@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    
+    <title>mcpiremote - another way to play Minecraft: Pi edition</title>
+  </head>
+  <body>
+  <form method="post">
+	<input type="button" id="button" value="a">
+  </form>
+	 
+	  
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<script>
+	  $(document).ready(function processData(){
+		$("#button").click(function(){
+		    var value = $("#button").val();
+		    $.ajax({
+		      url: '/processData',
+		      type: 'POST',
+		      data: JSON.stringify(value),
+		      datatype: 'json'
+		    });
+		    console.log(JSON.stringify(value))
+	       });
+	  });
+  
+	</script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js" type="text/javascript"></script>
+  
+  </body>
+</html>
