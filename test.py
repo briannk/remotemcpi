@@ -11,12 +11,25 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
     
-@app.route('/processData', methods=['POST'])
-def processData():
-    direction = request.get_json(force=True)
-    k.tap_key(direction)
-    return render_template('index.html')
+@app.route('/processMove', methods=['POST'])
+def processMove():
     
+    key = request.get_json(force=True)
+    if(key['isRelease'] == "true"):
+        k.release_key(key['value'])
+    else:
+        k.press_key(key['value'])
+    
+    return render_template('index.html')
+
+@app.route('/processCamera', methods=['POST'])
+def processCamera():
+    
+    pos = request.get_json(force=True)
+    print(pos['x'])
+    
+    return render_template('index.html')
+
     
 if __name__ == "__main__":
     app.debug = True

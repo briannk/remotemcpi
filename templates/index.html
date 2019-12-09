@@ -2,28 +2,60 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mcpiremote - another way to play Minecraft: Pi edition</title>
   </head>
   <body>
   <form method="post">
 	<input type="button" id="button" value="a">
+	
   </form>
 	 
 	  
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 	<script>
 	  $(document).ready(function processData(){
-		$("#button").click(function(){
-		    var value = $("#button").val();
+	     var x,y;
+	     var value = $("#button").val();
+		$("#button").on('touchstart', function(){
+		   
+		  $.ajax({
+		    url: '/processMove',
+		    type: 'POST',
+		    data: JSON.stringify({
+			"value": value,
+			"isRelease": "false"
+		      }),
+		    datatype: 'json'
+		  });
+
+		}).on('touchend', function(){
 		    $.ajax({
-		      url: '/processData',
-		      type: 'POST',
-		      data: JSON.stringify(value),
-		      datatype: 'json'
-		    });
-		    console.log(JSON.stringify(value))
-	       });
+			url: '/processMove',
+			type: 'POST',
+			data: JSON.stringify({
+			    "value": value,
+			    "isRelease": "true"
+			  }),
+			datatype: 'json'
+		      });
+
+	     });
+	     window.addEventListener('devicemotion', function(event){
+	       x = event.accelerationIncludingGravity.x;
+	       y = event.accelerationIncludingGravity.y;
+	       $.ajax({
+		    url: '/processCamera',
+		    type: 'POST',
+		    data: JSON.stringify({
+			"x": x,
+			"y": y
+		      }),
+		    datatype: 'json'
+		  });
+	     })
+	    
+	     
 	  });
   
 	</script>
