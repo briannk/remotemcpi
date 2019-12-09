@@ -11,7 +11,7 @@ and create a virtual environment with
 
 ```virtualenv [environment name]```
 
-and activate it with 
+and activate it from the root directory with 
 
 ```. [environment name]/bin/activate```
 
