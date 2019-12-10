@@ -7,8 +7,15 @@
   </head>
   <body>
   <form method="post">
-	<input type="button" id="button" value="a">
-	
+	<input type="button" id="moveforward" value="w">
+	<input type="button" id="moveleft" value="a">
+	<input type="button" id="movebackward" value="s">
+	<input type="button" id="moveright" value="d">
+	<input type="button" id="inventory" value="e">
+	<input type="button" id="cinventory" value="escape" style="display:none;">
+	<!--<input type="button" id="action" value="left">
+	<input type="button" id="use" value="right">-->
+      
   </form>
 	 
 	  
@@ -16,9 +23,9 @@
 	<script>
 	  $(document).ready(function processData(){
 	     var x,y;
-	     var value = $("#button").val();
-		$("#button").on('touchstart', function(){
-		   
+	     var value;
+		$("[id^='move']").on('touchstart', function(){
+		  value = $(this).val();
 		  $.ajax({
 		    url: '/processMove',
 		    type: 'POST',
@@ -41,9 +48,26 @@
 		      });
 
 	     });
-	     window.addEventListener('devicemotion', function(event){
-	       x = event.accelerationIncludingGravity.x;
-	       y = event.accelerationIncludingGravity.y;
+	     $("#inventory, #cinventory").on('touchstart', function(){
+		  value = $(this).val();
+		  $.ajax({
+		    url: '/processMove',
+		    type: 'POST',
+		    data: JSON.stringify({
+			"value": value,
+			"isRelease": "false"
+		      }),
+		    datatype: 'json'
+		  });
+		    $("#cinventory").toggle();
+		    $("#inventory").toggle();
+		 
+		  
+	     });
+	     window.addEventListener('deviceorientation', function(event){
+	       x = event.alpha;
+	       y = event.beta;
+
 	       $.ajax({
 		    url: '/processCamera',
 		    type: 'POST',
@@ -53,9 +77,7 @@
 		      }),
 		    datatype: 'json'
 		  });
-	     })
-	    
-	     
+	     });
 	  });
   
 	</script>
