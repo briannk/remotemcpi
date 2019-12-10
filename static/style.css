@@ -1,0 +1,81 @@
+
+body {
+	background-image: url("assets/dirt.jpeg");
+}
+
+#wrapper {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 1000px;
+	height: 1000px;
+}
+
+#moveforward {
+	background-image: url("assets/up.png");
+	opacity: 0.5;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	
+	transform: translate(-50%, -50%);
+}
+
+#movebackward {
+	background-image: url("assets/down.png");
+	opacity: 0.5;
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	transform: translate(-50%, -50%);
+}
+
+#moveleft {
+	background-image: url("assets/left.png");
+	opacity: 0.5;
+	position: absolute;
+	top: 50%;
+	left: 40%;
+	width: 100px;
+	height: 100px;
+	transform: translate(-50%, -50%);
+}
+
+#moveright {
+	background-image: url("assets/right.png");
+	opacity: 0.5;
+	position: absolute;
+	top: 50%;
+	left: 60%;
+	width: 100px;
+	height: 100px;
+	transform: translate(-50%, -50%);
+}
+
+#inventory {
+	background-image: url("assets/inventory.png");
+	opacity: 0.5;
+	position: absolute;
+	top: 5%;
+	left: 90%;
+	width: 100px;
+	height: 100px;
+	transform: translate(-50%, -50%);
+}
+
+#cinventory {
+	background-image: url("assets/cinventory.png");
+	opacity: 0.5;
+	position: absolute;
+	top: 5%;
+	left: 90%;
+	width: 100px;
+	height: 100px;
+	transform: translate(-50%, -50%);
+}
+
+
